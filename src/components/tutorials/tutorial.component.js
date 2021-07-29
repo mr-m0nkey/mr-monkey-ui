@@ -117,7 +117,7 @@ export default class Tutorial extends Component {
     const { currentTutorial } = this.state;
 
     return (
-      <div>
+      <div className="container mt-3">
         {currentTutorial ? (
           <div className="edit-form">
             <h4>Tutorial</h4>

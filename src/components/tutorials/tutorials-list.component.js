@@ -36,9 +36,8 @@ export default class TutorialsList extends Component {
     TutorialDataService.getAll()
       .then(response => {
         this.setState({
-          tutorials: response.data
+          tutorials: response.data.Data
         });
-        console.log(response.data);
       })
       .catch(e => {
         console.log(e);
@@ -80,9 +79,9 @@ export default class TutorialsList extends Component {
     TutorialDataService.findByTitle(this.state.searchTitle)
       .then(response => {
         this.setState({
-          tutorials: response.data
+          tutorials: response.data.Data
         });
-        console.log(response.data);
+        console.log(response.data.Data);
       })
       .catch(e => {
         console.log(e);
@@ -93,7 +92,8 @@ export default class TutorialsList extends Component {
     const { searchTitle, tutorials, currentTutorial, currentIndex } = this.state;
 
     return (
-      <div className="list row">
+      <div className="container mt-3">
+ <div className="list row">
         <div className="col-md-8">
           <div className="input-group mb-3">
             <input
@@ -128,7 +128,7 @@ export default class TutorialsList extends Component {
                   onClick={() => this.setActiveTutorial(tutorial, index)}
                   key={index}
                 >
-                  {tutorial.title}
+                  {tutorial.Name}
                 </li>
               ))}
           </ul>
@@ -148,20 +148,15 @@ export default class TutorialsList extends Component {
                 <label>
                   <strong>Title:</strong>
                 </label>{" "}
-                {currentTutorial.title}
+                {currentTutorial.Name}
               </div>
               <div>
                 <label>
                   <strong>Description:</strong>
                 </label>{" "}
-                {currentTutorial.description}
+                {currentTutorial.Description}
               </div>
-              <div>
-                <label>
-                  <strong>Status:</strong>
-                </label>{" "}
-                {currentTutorial.published ? "Published" : "Pending"}
-              </div>
+             
 
               <Link
                 to={"/tutorials/" + currentTutorial.id}
@@ -178,6 +173,8 @@ export default class TutorialsList extends Component {
           )}
         </div>
       </div>
-    );
+   
+      </div>
+      );
   }
 }

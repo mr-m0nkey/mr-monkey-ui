@@ -1,42 +1,43 @@
 import React, { Component } from "react";
-import { Switch, Route, Link } from "react-router-dom";
+import { Switch, Route, Link  } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-import "./css/App.css";
 
 import AddTutorial from "./components/tutorials/add-tutorial.component";
 import Tutorial from "./components/tutorials/tutorial.component";
 import TutorialsList from "./components/tutorials/tutorials-list.component";
+import Header from "./components/main/header.component"
+import Footer from "./components/main/footer.component";
+import Dashboard from "./components/main/dashboard.component";
+import SnakeGame from "./components/sketches/snake.component";
+
+
 
 class App extends Component {
+
+ 
   render() {
+   
+
     return (
       <div>
-        <nav className="navbar navbar-expand navbar-dark bg-dark">
-          <a href="/tutorials" className="navbar-brand">
-            bezKoder
-          </a>
-          <div className="navbar-nav mr-auto">
-            <li className="nav-item">
-              <Link to={"/tutorials"} className="nav-link">
-                Tutorials
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to={"/add"} className="nav-link">
-                Add
-              </Link>
-            </li>
-          </div>
-        </nav>
-
-        <div className="container mt-3">
+        <Switch>
+          <Header></Header>
+          <main></main>
+        </Switch>
+         
           <Switch>
-            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
-            <Route exact path="/add" component={AddTutorial} />
+            <Route exact path="/" component={Dashboard} />
             <Route path="/tutorials/:id" component={Tutorial} />
+            <Route exact path="/tutorials" component={TutorialsList} />
+            <Route exact path="/tutorials/add" component={AddTutorial} />
+            <Route path="/tutorials/:id" component={Tutorial} />
+            <Route path="/snake" component={SnakeGame} />
+          </Switch>
+
+          <Switch>
+            <Footer></Footer>
           </Switch>
         </div>
-      </div>
     );
   }
 }
